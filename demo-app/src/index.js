@@ -4,7 +4,7 @@
 // import ReactDOM from 'react-dom';
 
 // named import
-import { createRoot } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import { App } from './App';
 
