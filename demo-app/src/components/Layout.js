@@ -13,9 +13,9 @@ export const Layout = () => {
       </header>
 
       <nav id="menu">
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/color-tool">Color Tool</Link></li>
+        <ul className="menuBar">
+          <li className="menuItem"><Link to="/">Home</Link></li>
+          <li className="menuItem"><Link to="/color-tool">Color Tool</Link></li>
         </ul>
       </nav>
 
