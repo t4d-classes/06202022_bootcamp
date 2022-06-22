@@ -1,7 +1,7 @@
 export const ToolHeader = (props) => {
   return (
     <header>
-      <h2>Car Tool</h2>
+      <h2>{props.headerText}</h2>
     </header>
   );
 };
