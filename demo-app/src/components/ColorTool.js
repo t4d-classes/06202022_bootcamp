@@ -7,7 +7,7 @@ export const ColorTool = (props) => {
   return (
     <>
       <header>
-        <h2>{props.headerText}</h2>
+        <h2>Color Tool</h2>
       </header>
       <ul style={colorListStyle}>
         {props.colors.map(color => {
@@ -26,6 +26,5 @@ ColorTool.defaultProps = {
 };
 
 ColorTool.propTypes = {
-  headerText: PropTypes.string.isRequired,
   colors: PropTypes.array.isRequired,
 };

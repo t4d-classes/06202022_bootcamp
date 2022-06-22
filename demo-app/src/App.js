@@ -11,6 +11,11 @@ const colorList = [
   { id: 3, name: 'blue', hexcode: '0000ff' },
 ];
 
+const carList = [
+  { id: 1, make: 'Bugati', model: 'Chiron Supersport', year: 2022, color: 'blue', price: 3825000 },
+  { id: 2, make: 'Ford', model: 'Fusion Hybrid', year: 2020, color: 'red', price: 45000 },
+];
+
 
 // named export
 export const App = () => {
@@ -26,8 +31,8 @@ export const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="color-tool" element={
-            <ColorTool colors={colorList} headerText={"My Color Tool"} />} />
-          <Route path="car-tool" element={<CarTool />} />
+            <ColorTool colors={colorList} />} />
+          <Route path="car-tool" element={<CarTool cars={carList} />} />
         </Route>
       </Routes>
     </Router>

@@ -1,7 +1,5 @@
-import React from "react";
 
-
-export const CarTool = () => {
+export const CarTool = (props) => {
 
   return (
     <>
@@ -20,22 +18,14 @@ export const CarTool = () => {
           </tr>
         </thead>        
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Dodge</td>
-            <td>Challenger</td>
-            <td>2019</td>
-            <td>red</td>
-            <td>50000</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Chevrolet</td>
-            <td>Geo Metro</td>
-            <td>1998</td>
-            <td>blue</td>
-            <td>8000</td>
-          </tr>
+          {props.cars.map(car => <tr key={car.id}>
+              <td>{car.id}</td>
+              <td>{car.make}</td>
+              <td>{car.model}</td>
+              <td>{car.year}</td>
+              <td>{car.color}</td>
+              <td>{car.price}</td>
+          </tr>)}
         </tbody>
       </table>
     </>
