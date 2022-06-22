@@ -30,6 +30,7 @@ export const ColorForm = ({buttonText, onSubmitColor}) => {
         <input type="text" name="hexcode"
           value={colorForm.hexcode} onChange={change} />
       </label>
+
       <button type="button" onClick={submitColor}>{buttonText}</button>
     </form>
   )

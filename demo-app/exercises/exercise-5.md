@@ -3,10 +3,8 @@
 1. Create a Car Form component. In the component display a form with fields for
 make, model, year, color and price. Do not display a field for id.
 
-2. On each keystroke in an input field, display the `carForm` object managed by the state.
+2. Utilize the Car Form component in the Car Tool component.
 
-3. Utilize the Car Form component in the Car Tool component.
+3. Write code to add the collected car data to the car table.
 
-4. Write code to add the collected car data to the car table.
-
-5. Ensure it works!
+4. Ensure it works!
