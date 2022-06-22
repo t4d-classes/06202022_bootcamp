@@ -1,9 +1,9 @@
+import { ToolHeader } from './ToolHeader';
+
 export const Home = () => {
 
   return (
-    <header>
-      <h2>Home</h2>
-    </header>
+    <ToolHeader headerText="Welcome!" />
   );
 
 
