@@ -4,6 +4,8 @@ import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
+import { useList } from '../hooks/useList';
+
 const SORT_DIR_ASC = 'asc';
 const SORT_DIR_DESC = 'desc';
 
@@ -23,7 +25,7 @@ const sortTheCars = (cars, sortCol, sortDir) => {
 
 export const CarTool = ({ cars: initialCars }) => {
 
-  const [ cars, setCars ] = useState([...initialCars]);
+  const [ cars, appendCar, replaceCar, removeCar ] = useList([...initialCars]);
 
   const [ editCarId, setEditCarId ] = useState(-1);
 
@@ -39,26 +41,17 @@ export const CarTool = ({ cars: initialCars }) => {
   };
 
   const addCar = (newCar) => {
-    setCars([
-      ...cars,
-      {
-        ...newCar,
-        id: Math.max(...cars.map(c => c.id), 0) + 1,
-      },
-    ]);
+    appendCar(newCar);
     setEditCarId(-1);
   };
 
   const saveCar = car => {
-    const newCars = [...cars];
-    const carIndex = newCars.findIndex(c => c.id === car.id);
-    newCars[carIndex] = car;
-    setCars(newCars);
+    replaceCar(car);
     setEditCarId(-1);
   };
 
   const deleteCar = carId => {
-    setCars(cars.filter(c => c.id !== carId));
+    removeCar(carId);
     setEditCarId(-1);
   };
 

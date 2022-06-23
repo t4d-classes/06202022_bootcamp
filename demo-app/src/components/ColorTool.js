@@ -1,23 +1,14 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
 
+import { useList } from '../hooks/useList';
+
 export const ColorTool = ({ colors: initialColors }) => {
 
-  const [ colors, setColors ] = useState([...initialColors]);
-
-  const addColor = (newColor) => {
-    setColors([
-      ...colors,
-      {
-        ...newColor,
-        id: Math.max(...colors.map(c => c.id), 0) + 1,
-      },
-    ]);
-  };
+  const [ colors, addColor ] = useList([...initialColors]);
 
   return (
     <>
