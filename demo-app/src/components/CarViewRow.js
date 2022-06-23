@@ -1,10 +1,8 @@
 export const CarViewRow = ({
   car,
+  onEditCar: editCar,
   onDeleteCar: deleteCar
 }) => {
-
-  // const car = props.car;
-  // const { car } = props; // destructuring
 
   return (
     <tr>
@@ -14,8 +12,12 @@ export const CarViewRow = ({
         <td>{car.year}</td>
         <td>{car.color}</td>
         <td>{car.price}</td>
-        <td><button type="button"
-          onClick={() => deleteCar(car.id)}>Delete</button></td>
+        <td>
+          <button type="button"
+            onClick={() => editCar(car.id)}>Edit</button>
+          <button type="button"
+            onClick={() => deleteCar(car.id)}>Delete</button>
+        </td>
     </tr>    
   )
 
