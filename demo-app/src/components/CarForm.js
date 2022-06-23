@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { useForm } from '../hooks/useForm';
+
 
 const initialCarForm = () => ({
   make: '', model: '', year: 1886, color: '', price: 0,
@@ -7,20 +9,11 @@ const initialCarForm = () => ({
 
 export const CarForm = ({buttonText, onSubmitCar}) => {
 
-  const [ carForm, setCarForm ] = useState(initialCarForm());
-
-  const change = ({ target }) => {
-    setCarForm({
-      ...carForm,
-      [target.name]: target.type === 'number'
-        ? target.valueAsNumber // returns a number
-        : target.value,
-    });
-  };
+  const [ carForm, change, resetCarForm ] = useForm(initialCarForm());
 
   const submitCar = () => {
     onSubmitCar({ ...carForm });
-    setCarForm(initialCarForm());
+    resetCarForm();
   };
 
   return (
