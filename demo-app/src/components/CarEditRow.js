@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 export const CarEditRow = ({
   car,
-  onSaveCar: saveCar,
+  onSaveCar,
   onCancelCar: cancelCar
 }) => {
 
@@ -21,6 +21,13 @@ export const CarEditRow = ({
       [target.name]: target.type === 'number'
         ? target.valueAsNumber // returns a number
         : target.value,
+    });
+  };
+
+  const saveCar = () => {
+    onSaveCar({
+      ...carForm,
+      id: car.id,
     });
   };
 
