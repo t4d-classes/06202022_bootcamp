@@ -4,11 +4,11 @@ import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
 
-import { useList } from '../hooks/useList';
+import { useColorToolStore } from '../hooks/useColorToolStore';
 
-export const ColorTool = ({ colors: initialColors }) => {
+export const ColorTool = () => {
 
-  const [ colors, addColor ] = useList([...initialColors]);
+  const { colors, addColor } = useColorToolStore();
 
   return (
     <>
@@ -18,12 +18,4 @@ export const ColorTool = ({ colors: initialColors }) => {
     </>
   );
 
-};
-
-ColorTool.defaultProps = {
-  colors: [],
-};
-
-ColorTool.propTypes = {
-  colors: PropTypes.array.isRequired,
 };
