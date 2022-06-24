@@ -1,7 +1,7 @@
-import { ToolHeader } from './ToolHeader';
+import { ToolHeader } from '../ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
-import { useColorToolStoreContext } from '../contexts/colorToolStoreContext';
+import { useColorToolStoreContext } from '../../contexts/colorToolStoreContext';
 
 
 export const ColorTool = () => {
