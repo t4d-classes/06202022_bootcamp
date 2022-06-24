@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';

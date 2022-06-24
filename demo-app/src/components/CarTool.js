@@ -1,52 +1,34 @@
-import { useState } from 'react';
-
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
-import { useSortedList } from '../hooks/useList';
+import { useCarToolStore } from '../hooks/useCarToolStore';
 
 
-export const CarTool = ({ cars: initialCars }) => {
+export const CarTool = () => {
 
-  const [
-    cars, sortCol, sortDir,
-    appendCar, replaceCar, removeCar, sortCars,
-  ] = useSortedList([...initialCars]);
-
-  const [ editCarId, setEditCarId ] = useState(-1);
-
-  const editCar = carId => {
-    setEditCarId(carId);
-  };
-
-  const cancelCar = () => {
-    setEditCarId(-1);
-  };
-
-  const addCar = (newCar) => {
-    appendCar(newCar);
-    setEditCarId(-1);
-  };
-
-  const saveCar = car => {
-    replaceCar(car);
-    setEditCarId(-1);
-  };
-
-  const deleteCar = carId => {
-    removeCar(carId);
-    setEditCarId(-1);
-  };
+  const {
+    cars, editCarId, sortCol, sortDir, requestDeleteCarId,
+    editCar, cancelCar, addCar, saveCar, deleteCar, sortCars,
+    requestDeleteCar, cancelDeleteCar,
+  } = useCarToolStore();
 
   return (
     <>
       <ToolHeader headerText="Car Tool" />
       <CarTable cars={cars}
         sortCol={sortCol} sortDir={sortDir} editCarId={editCarId}
-        onSortCars={sortCars} onEditCar={editCar} onDeleteCar={deleteCar}
+        onSortCars={sortCars} onEditCar={editCar} onDeleteCar={requestDeleteCar}
         onSaveCar={saveCar} onCancelCar={cancelCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
+
+      {(requestDeleteCarId > 0) && <div class="modal">
+        <form>
+          <p>Are you sure you want to delete the car?</p>
+          <button type="button" onClick={deleteCar}>Yes</button>
+          <button type="button" onClick={cancelDeleteCar}>No</button>
+        </form>
+      </div>}
     </>
   );
 
