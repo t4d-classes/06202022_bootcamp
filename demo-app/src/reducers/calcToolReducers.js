@@ -1,6 +1,9 @@
 import { combineReducers } from "redux";
 
-import { ADD_ACTION, SUBTRACT_ACTION } from "../actions/calcToolActions";
+import {
+  ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION, DIVIDE_ACTION,
+  CLEAR_ACTION,
+} from "../actions/calcToolActions";
 
 export const resultReducer = (result = 0, action) => {
 
@@ -9,6 +12,12 @@ export const resultReducer = (result = 0, action) => {
       return result + action.value;
     case SUBTRACT_ACTION:
       return result - action.value;
+    case MULTIPLY_ACTION:
+      return result * action.value;
+    case DIVIDE_ACTION:
+      return result / action.value;
+    case CLEAR_ACTION:
+      return 0;
     default:
       return result;
   }
@@ -23,7 +32,10 @@ export const resultReducer = (result = 0, action) => {
 // 4. the only output value is the return value from the function
 export const historyReducer = (history = [], action) => {
 
-  if ([ADD_ACTION, SUBTRACT_ACTION].includes(action.type)) {
+  if ([
+    ADD_ACTION, SUBTRACT_ACTION,
+    MULTIPLY_ACTION, DIVIDE_ACTION,
+  ].includes(action.type)) {
     return [
       ...history,
       {
@@ -32,6 +44,10 @@ export const historyReducer = (history = [], action) => {
         opValue: action.value
       }
     ];    
+  }
+
+  if (action.type === CLEAR_ACTION) {
+    return [];
   }
 
   return history;
