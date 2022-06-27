@@ -10,7 +10,33 @@ import {
 
 export const useCalcToolReduxStore = () => {
 
-  const result = useSelector(state => state.result);
+  const result = useSelector(state => {
+    
+    let r = 0;
+
+    state.history.forEach(historyEntry => {
+      switch (historyEntry.opName) {
+        case "add":
+          r += historyEntry.opValue;
+          break;
+        case "subtract":
+          r -= historyEntry.opValue;
+          break;
+        case "multiply":
+          r *= historyEntry.opValue;
+          break;
+        case "divide":
+          r /= historyEntry.opValue;
+          break;
+        default:
+          break;
+      }
+
+    });
+
+    return r;
+
+  });
   const history = useSelector(state => state.history);
   const errorMessage = useSelector(state => state.errorMessage);
   

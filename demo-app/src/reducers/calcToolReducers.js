@@ -5,25 +5,6 @@ import {
   CLEAR_ACTION, SET_ERROR_MESSAGE_ACTION, DELETE_HISTORY_ENTRY_ACTION,
 } from "../actions/calcToolActions";
 
-export const resultReducer = (result = 0, action) => {
-
-  switch (action.type) {
-    case ADD_ACTION:
-      return result + action.value;
-    case SUBTRACT_ACTION:
-      return result - action.value;
-    case MULTIPLY_ACTION:
-      return result * action.value;
-    case DIVIDE_ACTION:
-      return result / action.value;
-    case CLEAR_ACTION:
-      return 0;
-    default:
-      return result;
-  }
-
-};
-
 // slice
 // reducer functions need to be pure functions
 // 1. the only data used in the function comes from the parameters
@@ -77,7 +58,6 @@ export const errorMessageReducer = (errorMessage = '', action) => {
 }
 
 export const calcToolReducer = combineReducers({
-  result: resultReducer,
   history: historyReducer,
   errorMessage: errorMessageReducer,
 });
