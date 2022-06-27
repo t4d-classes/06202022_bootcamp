@@ -15,30 +15,26 @@ export const resultReducer = (result = 0, action) => {
 
 };
 
+// slice
+// reducer functions need to be pure functions
+// 1. the only data used in the function comes from the parameters
+// 2. the parameters are immutable
+// 3. cannot perform side effects
+// 4. the only output value is the return value from the function
 export const historyReducer = (history = [], action) => {
 
-  switch (action.type) {
-    case ADD_ACTION:
-      return [
-        ...history,
-        {
-          id: Math.max(...history.map(he => he.id), 0) + 1,
-          opName: 'add',
-          opValue: action.value
-        }
-      ];
-    case SUBTRACT_ACTION:
-      return [
-        ...history,
-        {
-          id: Math.max(...history.map(he => he.id), 0) + 1,
-          opName: 'subtract',
-          opValue: action.value
-        }
-      ];
-    default:
-      return history;
+  if ([ADD_ACTION, SUBTRACT_ACTION].includes(action.type)) {
+    return [
+      ...history,
+      {
+        id: Math.max(...history.map(he => he.id), 0) + 1,
+        opName: action.type.toLowerCase(),
+        opValue: action.value
+      }
+    ];    
   }
+
+  return history;
 
 };
 
