@@ -15,6 +15,34 @@ export const resultReducer = (result = 0, action) => {
 
 };
 
+export const historyReducer = (history = [], action) => {
+
+  switch (action.type) {
+    case ADD_ACTION:
+      return [
+        ...history,
+        {
+          id: Math.max(...history.map(he => he.id), 0) + 1,
+          opName: 'add',
+          opValue: action.value
+        }
+      ];
+    case SUBTRACT_ACTION:
+      return [
+        ...history,
+        {
+          id: Math.max(...history.map(he => he.id), 0) + 1,
+          opName: 'subtract',
+          opValue: action.value
+        }
+      ];
+    default:
+      return history;
+  }
+
+};
+
 export const calcToolReducer = combineReducers({
   result: resultReducer,
+  history: historyReducer,
 });

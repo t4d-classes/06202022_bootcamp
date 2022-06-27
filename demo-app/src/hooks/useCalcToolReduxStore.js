@@ -8,6 +8,7 @@ import { createAddAction, createSubtractAction } from '../actions/calcToolAction
 export const useCalcToolReduxStore = () => {
 
   const result = useSelector(state => state.result);
+  const history = useSelector(state => state.history);
   
   const dispatch = useDispatch();
 
@@ -26,6 +27,7 @@ export const useCalcToolReduxStore = () => {
     ...boundActions,
     // result: result,
     result,
+    history,
   };
 
 };

@@ -6,7 +6,7 @@ import { ToolHeader } from './ToolHeader';
 
 export const CalcTool = () => {
 
-  const { result, add, subtract } = useCalcToolReduxStore();
+  const { result, history, add, subtract } = useCalcToolReduxStore();
 
   const [numInput, setNumInput] = useState(0);
 
@@ -24,6 +24,11 @@ export const CalcTool = () => {
           <button type="button" onClick={() => subtract(numInput)}>Subtract</button>
         </fieldset>
       </form>
+      <ul>
+        {history.map(historyEntry => <li key={historyEntry.id}>
+          {historyEntry.opName} {historyEntry.opValue}
+        </li>)}
+      </ul>
     </>
   );
 
