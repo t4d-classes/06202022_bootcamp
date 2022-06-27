@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 
 import {
   createAddAction, createSubtractAction, createMultiplyAction,
-  createDivideAction, createClearAction,
+  createDivideAction, createClearAction, createDeleteHistoryEntryAction
 } from '../actions/calcToolActions';
 
 
@@ -12,6 +12,7 @@ export const useCalcToolReduxStore = () => {
 
   const result = useSelector(state => state.result);
   const history = useSelector(state => state.history);
+  const errorMessage = useSelector(state => state.errorMessage);
   
   const dispatch = useDispatch();
 
@@ -21,6 +22,7 @@ export const useCalcToolReduxStore = () => {
     multiply: createMultiplyAction,
     divide: createDivideAction,
     clear: createClearAction,
+    deleteHistoryEntry: createDeleteHistoryEntryAction
   }, dispatch);
 
   // boundActions =
@@ -34,6 +36,7 @@ export const useCalcToolReduxStore = () => {
     // result: result,
     result,
     history,
+    errorMessage,
   };
 
 };

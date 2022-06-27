@@ -6,7 +6,12 @@ import { ToolHeader } from './ToolHeader';
 
 export const CalcTool = () => {
 
-  const { result, history, add, subtract, multiply, divide, clear } = useCalcToolReduxStore();
+  const {
+    result, history, errorMessage,
+    add, subtract, multiply, divide,
+    clear, deleteHistoryEntry,
+
+  } = useCalcToolReduxStore();
 
   const [numInput, setNumInput] = useState(0);
 
@@ -18,6 +23,7 @@ export const CalcTool = () => {
   return (
     <>
       <ToolHeader headerText="Calc Tool" />
+      {errorMessage && <div>{errorMessage}</div>}
       <form>
         <div>Result: {result}</div>
         <label>
@@ -35,6 +41,7 @@ export const CalcTool = () => {
       <ul>
         {history.map(historyEntry => <li key={historyEntry.id}>
           {historyEntry.opName} {historyEntry.opValue}
+          <button type="button" onClick={() => deleteHistoryEntry(historyEntry.id)}>X</button>
         </li>)}
       </ul>
     </>

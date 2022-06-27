@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 
 import {
   ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION, DIVIDE_ACTION,
-  CLEAR_ACTION,
+  CLEAR_ACTION, SET_ERROR_MESSAGE_ACTION, DELETE_HISTORY_ENTRY_ACTION,
 } from "../actions/calcToolActions";
 
 export const resultReducer = (result = 0, action) => {
@@ -46,6 +46,11 @@ export const historyReducer = (history = [], action) => {
     ];    
   }
 
+  if (action.type === DELETE_HISTORY_ENTRY_ACTION) {
+    return history.filter(historyEntry =>
+      historyEntry.id !== action.historyEntryId);
+  }
+
   if (action.type === CLEAR_ACTION) {
     return [];
   }
@@ -54,7 +59,25 @@ export const historyReducer = (history = [], action) => {
 
 };
 
+export const errorMessageReducer = (errorMessage = '', action) => {
+
+  if (action.type === SET_ERROR_MESSAGE_ACTION) {
+    return action.message;
+  }
+
+  if ([
+    ADD_ACTION, SUBTRACT_ACTION,
+    MULTIPLY_ACTION, DIVIDE_ACTION,
+    CLEAR_ACTION, DELETE_HISTORY_ENTRY_ACTION,
+  ].includes(action.type)) {
+    return '';
+  }
+
+  return errorMessage;
+}
+
 export const calcToolReducer = combineReducers({
   result: resultReducer,
   history: historyReducer,
+  errorMessage: errorMessageReducer,
 });
