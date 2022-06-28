@@ -28,6 +28,7 @@
 
     <link rel="stylesheet" href="%PUBLIC_URL%/reset.css" />
     <link rel="stylesheet" href="%PUBLIC_URL%/site.css" />
+    <script type="module" src="%PUBLIC_URL%/js/top-level-await.js"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -193,24 +194,54 @@
     </script>
     <script>
 
-      const xhr = new XMLHttpRequest();
-      xhr.addEventListener('readystatechange', () => {
+      // const myFetch = (url) => {
 
-        if (xhr.status === 200 && xhr.readyState === 4) {
-          console.log(xhr.responseText);
-        }
+      //   return new Promise(resolve => {
 
-      });
+      //     const xhr = new XMLHttpRequest();
+      //     xhr.addEventListener('readystatechange', () => {
 
-      xhr.open('GET', 'http://localhost:3060/cars');
-      xhr.send();
+      //       if (xhr.status === 200 && xhr.readyState === 4) {
+      //         resolve(JSON.parse(xhr.responseText));
+      //       }
 
-      // Lab Exercise
+      //     });
 
-      // Implement the following myFetch function using the call below as function
-      // signature, use the XHR code above as the mechanism by which you call the REST API
+      //     xhr.open('GET', url);
+      //     xhr.send();          
+
+      //   });
+
+      // }
+
+      // // Lab Exercise
+
+      // // Implement the following myFetch function using the call below as function
+      // // signature, use the XHR code above as the mechanism by which you call the REST API
 
       // myFetch('http://localhost:3060/colors').then(colors => console.log(colors));
+
+    </script>
+    <script>
+
+
+      // const allColors = () => {
+      //   return fetch('http://localhost:3060/colors')
+      //     .then(res => res.json());
+      // };
+
+      const allColors = async () => {
+        const res = await fetch('http://localhost:3060/colors');
+        const colors = await res.json();
+        return colors;
+      };
+
+      allColors().then(colors => console.log(colors));
+
+      // top-level await and it needs be done in a module
+      // const colors = await allColors();
+      // console.log(colors);
+
 
 
 
