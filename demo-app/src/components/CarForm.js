@@ -1,7 +1,4 @@
-import { useState } from 'react';
-
 import { useForm } from '../hooks/useForm';
-
 
 const initialCarForm = () => ({
   make: '', model: '', year: 1886, color: '', price: 0,

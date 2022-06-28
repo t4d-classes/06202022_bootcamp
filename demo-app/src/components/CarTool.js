@@ -2,8 +2,7 @@ import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
-import { useCarToolStoreContext } from '../contexts/carToolStoreContext';
-
+import { useCarToolReduxStore } from '../hooks/useCarToolReduxStore';
 
 export const CarTool = () => {
 
@@ -11,7 +10,7 @@ export const CarTool = () => {
     cars, editCarId, sortCol, sortDir, requestDeleteCarId,
     editCar, cancelCar, addCar, saveCar, deleteCar, sortCars,
     requestDeleteCar, cancelDeleteCar,
-  } = useCarToolStoreContext();
+  } = useCarToolReduxStore();
 
   return (
     <>
@@ -25,7 +24,7 @@ export const CarTool = () => {
       {(requestDeleteCarId > 0) && <div class="modal">
         <form>
           <p>Are you sure you want to delete the car?</p>
-          <button type="button" onClick={deleteCar}>Yes</button>
+          <button type="button" onClick={() => deleteCar(requestDeleteCarId)}>Yes</button>
           <button type="button" onClick={cancelDeleteCar}>No</button>
         </form>
       </div>}
