@@ -94,21 +94,38 @@
       //   }, delay());
       // }, delay());
 
-      function allDone() {
-        console.log('all done');
-      }
+      // let counter = 0;
 
-      setTimeout(() => {
-        console.log('a');
-      }, delay());
+      // function allDone() {
+      //   console.log('all done');
+      // }
 
-      setTimeout(() => {
-        console.log('b');
-      }, delay());
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('a');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, delay());
 
-      setTimeout(() => {
-        console.log('c');
-      }, delay());
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('b');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, delay());
+
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('c');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, delay());
 
       // Lab Exercise:
       // Run the all done function after all three setTimeout callbacks are invoked
@@ -117,6 +134,83 @@
       // 1. All three calls to the setTimeout function must occur in the same task
       // 2. You cannot hard code delay values
       // 3. You may not use promises      
+
+    </script>
+    <script>
+
+      // class Promise {
+
+      //   #resolveFns = [];
+      //   #rejectFns = [];
+
+      //   constructor(asyncOp) {
+
+      //     const resolveFn = result => {
+      //       // this.#resolveFns.forEach(cb => {
+      //       //   cb(result);
+      //       // })
+      //     };
+
+      //     const rejectFn = result => {
+      //       // this.#rejectFns.forEach(cb => {
+      //       //   cb(result);
+      //       // })
+      //     };
+
+      //     asyncOp(resolveFn, rejectFn);
+      //   }
+
+      //   then(cb) {
+      //     this.#resolveFns.push(cb);
+      //   }
+
+      //   catch(cb) {
+      //     this.#rejectFns.push(cb);
+      //   }
+
+      // }
+
+
+      // console.log("create promise");
+      // const p = new Promise((resolve, reject) => {
+
+      //   console.log("call settimeout");
+      //   setTimeout(() => {
+      //     console.log("call resolve");
+      //     resolve('a');
+      //   }, delay());
+
+      // });
+
+      // console.log("call then");
+      // p.then(result => {
+      //   console.log("output result");
+      //   console.log(result);
+      // });
+
+      // console.log("made it here");
+
+    </script>
+    <script>
+
+      const xhr = new XMLHttpRequest();
+      xhr.addEventListener('readystatechange', () => {
+
+        if (xhr.status === 200 && xhr.readyState === 4) {
+          console.log(xhr.responseText);
+        }
+
+      });
+
+      xhr.open('GET', 'http://localhost:3060/cars');
+      xhr.send();
+
+      // Lab Exercise
+
+      // Implement the following myFetch function using the call below as function
+      // signature, use the XHR code above as the mechanism by which you call the REST API
+
+      // myFetch('http://localhost:3060/colors').then(colors => console.log(colors));
 
 
 
