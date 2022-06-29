@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useForm } from '../hooks/useForm';
 
 const initialCarForm = () => ({
@@ -8,10 +9,10 @@ export const CarForm = ({buttonText, onSubmitCar}) => {
 
   const [ carForm, change, resetCarForm ] = useForm(initialCarForm());
 
-  const submitCar = () => {
+  const submitCar = useCallback(() => {
     onSubmitCar({ ...carForm });
     resetCarForm();
-  };
+  }, [onSubmitCar, carForm, resetCarForm]);
 
   return (
     <form>

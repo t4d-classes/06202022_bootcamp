@@ -35,5 +35,5 @@ const deleteColor = async colorId => {
 };
 
 // top-level await and it needs be done in a module
-const colors = await allColors();
-console.log(colors);
+// const colors = await allColors();
+// console.log(colors);

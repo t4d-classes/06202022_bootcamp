@@ -1,8 +1,13 @@
-export const CarViewRow = ({
+import { memo } from 'react';
+import { isEqual } from 'lodash';
+
+export const CarViewRow = memo(({
   car,
   onEditCar: editCar,
   onDeleteCar: deleteCar
 }) => {
+
+  console.log('rendering car view: ', car.id);
 
   return (
     <tr>
@@ -21,4 +26,6 @@ export const CarViewRow = ({
     </tr>    
   )
 
-};
+}, (prevProps, nextProps) => {
+  return isEqual(prevProps, nextProps);
+});

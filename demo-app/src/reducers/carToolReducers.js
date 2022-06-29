@@ -6,18 +6,7 @@ import {
   EDIT_CAR_ACTION, CANCEL_CAR_ACTION, SORT_CARS_ACTION,
 } from '../actions/carToolActions';
 
-const carList = [
-  {
-    id: 1, make: 'Ford', model: 'Fusion Hybrid',
-    year: 2019, color: 'red', price: 45000,
-  },
-  {
-    id: 2, make: 'Tesla', model: 'S',
-    year: 2020, color: 'blue', price: 120000,
-  },
-];
-
-export const carsReducer = (cars = carList, action) => {
+export const carsReducer = (cars = [], action) => {
 
   if (action.type === REFRESH_CARS_DONE_ACTION) {
     return action.cars;

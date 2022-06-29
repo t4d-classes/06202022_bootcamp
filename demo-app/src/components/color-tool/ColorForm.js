@@ -1,22 +1,22 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export const ColorForm = ({buttonText, onSubmitColor}) => {
 
   const [ colorForm, setColorForm ] = useState({ name: '', hexcode: '' });
 
-  const change = ({ target }) => {
+  const change = useCallback(({ target }) => {
     setColorForm({
       ...colorForm,
       [target.name]: target.type === 'number'
         ? target.valueAsNumber // returns a number
         : target.value,
     });
-  };
+  }, [colorForm]);
 
-  const submitColor = () => {
+  const submitColor = useCallback(() => {
     onSubmitColor({ ...colorForm });
     setColorForm({ name: '', hexcode: '' });
-  };
+  }, [onSubmitColor, colorForm]);
 
   return (
     <form>

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
@@ -12,16 +13,18 @@ export const CarTool = () => {
     requestDeleteCar, cancelDeleteCar,
   } = useCarToolReduxStore();
 
+
   return (
     <>
       <ToolHeader headerText="Car Tool" />
       <CarTable cars={cars}
         sortCol={sortCol} sortDir={sortDir} editCarId={editCarId}
-        onSortCars={sortCars} onEditCar={editCar} onDeleteCar={requestDeleteCar}
+        onSortCars={sortCars}
+        onEditCar={editCar} onDeleteCar={requestDeleteCar}
         onSaveCar={saveCar} onCancelCar={cancelCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
 
-      {(requestDeleteCarId > 0) && <div class="modal">
+      {(requestDeleteCarId > 0) && <div className="modal">
         <form>
           <p>Are you sure you want to delete the car?</p>
           <button type="button" onClick={() => deleteCar(requestDeleteCarId)}>Yes</button>
