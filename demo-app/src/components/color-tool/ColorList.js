@@ -1,4 +1,4 @@
-export const ColorList = ({ colors }) => {
+export const ColorList = ({ colors, onDeleteColor: deleteColor }) => {
 
   const colorListStyle = {listStyleType: 'disc', marginLeft: '1rem'};
 
@@ -6,7 +6,10 @@ export const ColorList = ({ colors }) => {
     <ul style={colorListStyle}>
       {colors.map(color => {
         return (
-          <li key={color.id}>{color.name}</li>
+          <li key={color.id}>
+            {color.name}
+            <button type="button" onClick={() => deleteColor(color.id)}>X</button>
+          </li>
         );
       })}
     </ul>    

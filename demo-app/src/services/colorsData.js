@@ -26,7 +26,7 @@ export const replaceColor = async color => {
 
 };
 
-export const deleteColor = async colorId => {
+export const removeColor = async colorId => {
 
   await fetch('http://localhost:3060/colors/' + encodeURIComponent(colorId), {
     method: 'DELETE',

@@ -1,5 +1,5 @@
 
-import { allColors, appendColor } from "../services/colorsData";
+import { allColors, appendColor, removeColor } from "../services/colorsData";
 
 export const REFRESH_COLORS_REQUEST_ACTION = "REFRESH_COLORS_REQUEST";
 export const REFRESH_COLORS_DONE_ACTION = "REFRESH_COLORS_DONE";
@@ -39,3 +39,18 @@ export const addColor = (color) => {
 
 };
   
+export const DELETE_COLOR_REQUEST_ACTION = "DELETE_COLOR_REQUEST";
+
+export const createDeleteColorRequestAction = colorId => 
+  ({ type: DELETE_COLOR_REQUEST_ACTION, colorId });
+
+export const deleteColor = (colorId) => {
+
+  // this function is dispatched into the store
+  return async dispatch => {
+    dispatch(createDeleteColorRequestAction());
+    await removeColor(colorId);
+    dispatch(refreshColors());
+  };
+
+};

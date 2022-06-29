@@ -6,12 +6,12 @@ import { useColorToolReduxStore } from '../../hooks/useColorToolReduxStore';
 
 export const ColorTool = () => {
 
-  const { colors, addColor } = useColorToolReduxStore();
+  const { colors, addColor, deleteColor } = useColorToolReduxStore();
 
   return (
     <>
       <ToolHeader headerText="Color Tool" />
-      <ColorList colors={colors} />
+      <ColorList colors={colors} onDeleteColor={deleteColor} />
       <ColorForm buttonText="Add Color" onSubmitColor={addColor} />
     </>
   );
