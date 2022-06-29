@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
 import {
-  ADD_CAR_ACTION, SAVE_CAR_ACTION, DELETE_REQUEST_CAR_ACTION,
-  DELETE_CANCEL_CAR_ACTION, DELETE_CONFIRM_CAR_ACTION,
+  REFRESH_CARS_DONE_ACTION,
+  DELETE_CANCEL_CAR_ACTION, DELETE_REQUEST_CAR_ACTION,
   EDIT_CAR_ACTION, CANCEL_CAR_ACTION, SORT_CARS_ACTION,
 } from '../actions/carToolActions';
 
@@ -19,26 +19,8 @@ const carList = [
 
 export const carsReducer = (cars = carList, action) => {
 
-  if (action.type === ADD_CAR_ACTION) {
-    return [
-      ...cars,
-      {
-        ...action.payload.car,
-        id: Math.max(...cars.map(c => c.id), 0) + 1,
-      }
-    ]
-  }
-
-  if (action.type === SAVE_CAR_ACTION) {
-    const newCars = [...cars];
-    const carIndex = newCars.findIndex(
-      c => c.id === action.payload.car.id);
-    newCars[carIndex] = action.payload.car;
-    return newCars;
-  }
-
-  if (action.type === DELETE_CONFIRM_CAR_ACTION) {
-    return cars.filter(c => c.id !== action.payload.carId);
+  if (action.type === REFRESH_CARS_DONE_ACTION) {
+    return action.cars;
   }
 
   return cars;
@@ -51,7 +33,7 @@ export const requestDeleteCarIdReducer = (deleteCarId = 0, action) => {
   }
 
   if ([
-    DELETE_CONFIRM_CAR_ACTION,
+    REFRESH_CARS_DONE_ACTION,
     DELETE_CANCEL_CAR_ACTION,
   ].includes(action.type)) {
     return -1;
@@ -67,9 +49,7 @@ export const editCarIdReducer = (editCarId = -1, action) => {
   }
 
   if ([
-    ADD_CAR_ACTION,
-    SAVE_CAR_ACTION,
-    DELETE_CONFIRM_CAR_ACTION,
+    REFRESH_CARS_DONE_ACTION,
     CANCEL_CAR_ACTION
   ].includes(action.type)) {
     return -1;

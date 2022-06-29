@@ -10,10 +10,8 @@ import {
 } from '../selectors/carToolSelectors';
 
 import {
-  createAddCarAction,
-  createSaveCarAction,
+  addCar, saveCar, deleteConfirmCar,
   createDeleteRequestCarAction,
-  createDeleteConfirmCarAction,
   createDeleteCancelCarAction,
   createEditCarAction,
   createCancelCarAction,
@@ -31,10 +29,10 @@ export const useCarToolReduxStore = () => {
   const dispatch = useDispatch();
 
   const actions = useMemo(() => bindActionCreators({
-    addCar: createAddCarAction,
-    saveCar: createSaveCarAction,
+    addCar,
+    saveCar,
     requestDeleteCar: createDeleteRequestCarAction,
-    deleteCar: createDeleteConfirmCarAction,
+    deleteCar: deleteConfirmCar,
     cancelDeleteCar: createDeleteCancelCarAction,
     editCar: createEditCarAction,
     cancelCar: createCancelCarAction,
