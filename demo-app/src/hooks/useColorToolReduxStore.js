@@ -1,8 +1,9 @@
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import {
-  createAddColorAction
+  addColor, refreshColors
 } from '../actions/colorToolActions';
 
 
@@ -13,9 +14,16 @@ export const useColorToolReduxStore = () => {
   
   const dispatch = useDispatch();
 
-  const boundActions = bindActionCreators({
-    addColor: createAddColorAction,
-  }, dispatch);
+  const boundActions = useMemo(() => bindActionCreators({
+    refreshColors,
+    addColor,
+  }, dispatch), [dispatch]);
+
+  useEffect(() => {
+
+    boundActions.refreshColors();
+
+  }, [boundActions]);
 
   return {
     ...boundActions,

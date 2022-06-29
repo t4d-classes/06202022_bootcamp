@@ -1,4 +1,6 @@
 
+import { allColors, appendColor } from "../services/colorsData";
+
 export const REFRESH_COLORS_REQUEST_ACTION = "REFRESH_COLORS_REQUEST";
 export const REFRESH_COLORS_DONE_ACTION = "REFRESH_COLORS_DONE";
 
@@ -12,17 +14,28 @@ export const createRefreshColorsDoneAction = (colors) =>
 export const refreshColors = () => {
 
   // this function is dispatched into the store
-  return dispatch => {
-
+  return async dispatch => {
     dispatch(createRefreshColorsRequestAction());
-    return 
-
+    const colors = await allColors();
+    dispatch(createRefreshColorsDoneAction(colors));
   };
 
 };
 
 
-export const ADD_COLOR_ACTION = "ADD_COLOR";
+export const ADD_COLOR_REQUEST_ACTION = "ADD_COLOR_REQUEST";
 
-export const createAddColorAction = color => 
-  ({ type: ADD_COLOR_ACTION, color });
+export const createAddColorRequestAction = color => 
+  ({ type: ADD_COLOR_REQUEST_ACTION, color });
+
+export const addColor = (color) => {
+
+  // this function is dispatched into the store
+  return async dispatch => {
+    dispatch(createAddColorRequestAction());
+    await appendColor(color);
+    dispatch(refreshColors());
+  };
+
+};
+  
