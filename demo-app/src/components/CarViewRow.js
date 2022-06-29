@@ -11,7 +11,7 @@ export const CarViewRow = ({
         <td>{car.model}</td>
         <td>{car.year}</td>
         <td>{car.color}</td>
-        <td>{car.price}</td>
+        <td>${car.price}</td>
         <td>
           <button type="button"
             onClick={() => editCar(car.id)}>Edit</button>

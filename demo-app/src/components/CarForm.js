@@ -1,7 +1,7 @@
 import { useForm } from '../hooks/useForm';
 
 const initialCarForm = () => ({
-  make: '', model: '', year: 1886, color: '', price: 0,
+  make: '', model: '', year: 1900, color: '', price: 0,
 });
 
 export const CarForm = ({buttonText, onSubmitCar}) => {
