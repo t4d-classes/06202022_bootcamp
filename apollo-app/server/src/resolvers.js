@@ -28,13 +28,28 @@ export const resolvers = {
       const books = await res.json();
       return books.length === 1 ? books[0] : null;
     },
-    async books() {
-      const res = await fetch('http://localhost:5050/books');
+    async books(_, args) {
+
+      const authorId = parseInt(args.authorId);
+
+      let res;
+      if (authorId > 0) {
+        res = await fetch('http://localhost:5050/books?authorId=' + authorId);
+      } else {
+        res = await fetch('http://localhost:5050/books')
+      }
       return res.json();
+
     },
     async authors() {
       const res = await fetch('http://localhost:5050/authors');
       return res.json();
     },
   },
+  Book: {
+    author: async (book) => {
+      const res = await fetch('http://localhost:5050/authors/' + book.authorId);
+      return res.json();
+    }
+  }
 };

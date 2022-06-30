@@ -10,7 +10,7 @@ export const typeDefs = gql`
     author: Author
     book(isbn: String): Book
     authors: [Author]
-    books: [Book]
+    books(authorId: ID): [Book]
   }
 
   type Color {
@@ -31,6 +31,7 @@ export const typeDefs = gql`
     isbn: String
     title: String
     authorId: ID
+    author: Author
     category: String
     price: Float
     quantity: Int

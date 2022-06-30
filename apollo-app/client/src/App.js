@@ -5,13 +5,13 @@ import { BookTable } from "./components/BookTable";
 import { DropDownList2 } from "./components/DropDownList2";
 
 const APP_QUERY = gql`
-  query App($colorId: ID) {
+  query App($colorId: ID, $authorId: ID) {
     color(colorId: $colorId) {
       id
       name
     }
-    books {
-      id title price quantity
+    books(authorId: $authorId) {
+      id title price quantity author { firstName lastName }
     }
     authors {
       id firstName lastName 
@@ -22,9 +22,10 @@ const APP_QUERY = gql`
 function App() {
 
   const [ colorId, setColorId ] = useState(1);
+  const [ authorId, setAuthorId ] = useState('-1');
 
   const { loading, error, data } = useQuery(
-    APP_QUERY, { variables: { colorId } });
+    APP_QUERY, { variables: { colorId, authorId } });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -35,6 +36,7 @@ function App() {
       text: `${author.lastName}, ${author.firstName}`
     };
   });
+  authorOptions.unshift({ value: '-1', text: "Select One..." });
 
   return (
     <>
@@ -45,7 +47,7 @@ function App() {
       </div>
       <DropDownList2 options={authorOptions}
         title="Select Author" name="authorId"
-        value={0} onChange={() => undefined} />
+        value={authorId} onChange={e => setAuthorId(e.target.value)} />
       <BookTable books={data.books} />
     </>
   );
