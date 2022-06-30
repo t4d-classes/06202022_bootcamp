@@ -25,7 +25,10 @@ function App() {
   const [ authorId, setAuthorId ] = useState('-1');
 
   const { loading, error, data } = useQuery(
-    APP_QUERY, { variables: { colorId, authorId } });
+    APP_QUERY, {
+      variables: { colorId, authorId },
+      fetchPolicy: 'network-only',
+    });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;

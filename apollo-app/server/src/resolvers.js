@@ -46,6 +46,15 @@ export const resolvers = {
       return res.json();
     },
   },
+  Mutation: {
+    addColor(_, args) {
+      return fetch('http://localhost:5050/colors', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(args.newColor)
+      }).then(res => res.json());
+    }
+  },
   Book: {
     author: async (book) => {
       const res = await fetch('http://localhost:5050/authors/' + book.authorId);
