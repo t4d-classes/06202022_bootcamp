@@ -9,11 +9,13 @@ export const BookTable = ({ books }) => {
           <th>Quantity</th>
         </tr>
       </thead>
-      {books.map(book => <tr key={book.id}>
-        <td>{book.title}</td>
-        <td>{book.price}</td>
-        <td>{book.quantity}</td>
-      </tr>)}
+      <tbody>
+        {books.map(book => <tr key={book.id}>
+          <td>{book.title}</td>
+          <td>{book.price}</td>
+          <td>{book.quantity}</td>
+        </tr>)}
+      </tbody>
     </table>
   )
 };

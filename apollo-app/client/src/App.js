@@ -1,10 +1,15 @@
 import { useQuery, gql } from "@apollo/client";
+import { useState } from 'react';
 
 import { BookTable } from "./components/BookTable";
 import { DropDownList2 } from "./components/DropDownList2";
 
 const APP_QUERY = gql`
-  query App {
+  query App($colorId: ID) {
+    color(colorId: $colorId) {
+      id
+      name
+    }
     books {
       id title price quantity
     }
@@ -15,7 +20,11 @@ const APP_QUERY = gql`
 `;
 
 function App() {
-  const { loading, error, data } = useQuery(APP_QUERY);
+
+  const [ colorId, setColorId ] = useState(1);
+
+  const { loading, error, data } = useQuery(
+    APP_QUERY, { variables: { colorId } });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -29,6 +38,11 @@ function App() {
 
   return (
     <>
+      <div>
+        Color: {data.color.name}
+        <button type="button" onClick={() => setColorId(colorId-1)}>&lt;</button>
+        <button type="button" onClick={() => setColorId(colorId+1)}>&gt;</button>
+      </div>
       <DropDownList2 options={authorOptions}
         title="Select Author" name="authorId"
         value={0} onChange={() => undefined} />
