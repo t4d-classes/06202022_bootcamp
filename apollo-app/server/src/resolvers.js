@@ -28,5 +28,13 @@ export const resolvers = {
       const books = await res.json();
       return books.length === 1 ? books[0] : null;
     },
+    async books() {
+      const res = await fetch('http://localhost:5050/books');
+      return res.json();
+    },
+    async authors() {
+      const res = await fetch('http://localhost:5050/authors');
+      return res.json();
+    },
   },
 };
