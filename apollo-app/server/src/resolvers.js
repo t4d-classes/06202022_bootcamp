@@ -23,9 +23,10 @@ export const resolvers = {
       const res = await fetch('http://localhost:5050/authors/1');
       return res.json();
     },
-    async book() {
-      const res = await fetch('http://localhost:5050/books/1');
-      return res.json();
+    async book(_, args) {
+      const res = await fetch('http://localhost:5050/books?isbn=' + args.isbn);
+      const books = await res.json();
+      return books.length === 1 ? books[0] : null;
     },
   },
 };

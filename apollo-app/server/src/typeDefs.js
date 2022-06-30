@@ -8,7 +8,7 @@ export const typeDefs = gql`
     color(colorId: ID): Color
     colors: [Color]
     author: Author
-    book: Book
+    book(isbn: String): Book
   }
 
   type Color {
