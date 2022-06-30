@@ -5,13 +5,32 @@ export const typeDefs = gql`
     message: String
     age: Int
     interestRate: Float
-    color: Color
+    color(colorId: ID): Color
     colors: [Color]
+    author: Author
+    book: Book
   }
 
   type Color {
     id: ID
     name: String
     hexcode: String
+  }
+
+  type Author {
+    id: ID
+    firstName: String
+    lastName: String
+    phoneNumber: String
+  }
+
+  type Book {
+    id: ID
+    isbn: String
+    title: String
+    authorId: ID
+    category: String
+    price: Float
+    quantity: Int
   }
 `;
