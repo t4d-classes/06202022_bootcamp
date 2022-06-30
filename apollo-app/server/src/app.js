@@ -23,7 +23,7 @@ export const getApp = async () => {
     proxy.web(
       req,
       res,
-      { target: 'http://localhost:3000' },
+      { target: 'http://0.0.0.0:3000' },
       function proxyWebErrorHandler(err) {
         logger.error(err.message);
         res.sendFile(path.resolve('./public/index.html'));
