@@ -1,6 +1,6 @@
 
 
-export const DropDownList2 = ({
+export const TextValueDropDown = ({
   options,
   title,
   name,

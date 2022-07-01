@@ -195,6 +195,24 @@
       "price": 12.34,
       "quantity": 2,
       "id": 8
+    },
+    {
+      "isbn": "a",
+      "title": "a",
+      "authorId": "2",
+      "category": "Inspirational",
+      "price": 10.99,
+      "quantity": 0,
+      "id": 9
+    },
+    {
+      "isbn": "a",
+      "title": "a",
+      "authorId": "3",
+      "category": "Inspirational",
+      "price": 10.99,
+      "quantity": 0,
+      "id": 10
     }
   ]
 }

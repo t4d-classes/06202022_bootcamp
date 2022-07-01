@@ -1,57 +1,24 @@
-
-import { useValidation } from '../hooks/useValidation';
 import { useForm } from '../hooks/useForm';
 
-
-import { TextValueDropDown } from './TextValueDropDown';
-
-const AUTHOR_NOT_SELECTED = "-1";
-
-export const BookForm = ({
-  buttonText,
-  authorOptions,
-  onSubmitBook,
-}) => {
-
-  const [ errors, addError, clearErrors ] = useValidation();
+export const BookForm = (props) => {
 
   const [ bookForm, change, resetBookForm ] = useForm({
     title: '',
     isbn: '',
-    authorId: AUTHOR_NOT_SELECTED,
+    authorId: 1,
     category: "Inspirational",
     price: 10.99,
     quantity: 0,
   });
-
-  const isValidBookForm = () => {
-
-    let isValid = true;
-
-    clearErrors();
-
-    if (bookForm.authorId === AUTHOR_NOT_SELECTED) {
-      addError("An author must be selected.");
-      isValid = false;
-    }
-
-    return isValid;
-  };
   
   const submitBook = async () => {
-
-    if (isValidBookForm()) {
-      await onSubmitBook({ ...bookForm });
-      resetBookForm();
-    }
-
+    await props.onSubmitBook({ ...bookForm });
+    
+    resetBookForm();
   };
 
   return (
     <form>
-      {errors.length > 0 && <ul>
-        {errors.map((error, i) => <li key={i}>{error}</li>)}
-      </ul>}
       <label style={{display: 'block'}}>
         Title:
         <input type="text" name="title" value={bookForm.title} onChange={change} />
@@ -65,10 +32,8 @@ export const BookForm = ({
         <input type="text" name="category" value={bookForm.category} onChange={change} />
       </label>
       <label style={{display: 'block'}}>
-        Author:
-        <TextValueDropDown title="Select Author of the Book"
-          name="authorId" value={bookForm.authorId} onChange={change}
-          options={authorOptions} />
+        Author Id:
+        <input type="int" name="authorId" value={bookForm.authorId} onChange={change} />
       </label>
       <label style={{display: 'block'}}>
         Price:
@@ -78,7 +43,7 @@ export const BookForm = ({
         Quantity:
         <input type="int" name="quantity" value={bookForm.quantity} onChange={change} />
       </label>
-      <button type="button" onClick={submitBook}>{buttonText}</button>
+      <button type="button" onClick={submitBook}>{props.buttonText}</button>
     </form>
   );
 
