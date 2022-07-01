@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">    
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    <!-- <script>
+
+      const outerFn = () => {
+      
+        let y = 2;
+
+        setTimeout(function incrementY() {
+          console.log("increment y");
+          y = 4;
+        }, 2000);
+
+        const inner = () => {
+          console.log(y);
+        };
+
+        return inner;
+      };
+
+      const inner = outerFn();
+
+      inner();
+
+      setTimeout(function displayY() {
+        console.log("display y");
+        inner();
+      }, 4000);
+
+      // console.dir(inner);
+
+    </script> -->
+    <!-- <script>
+    
+      // const delay = () => Math.random() * 1000 + 500;
+
+
+      /*
+      setTimeout(() => {
+        console.log('cool');
+      }, 0);
+
+      console.log('fun');
+      */
+
+      // pyramid of doom
+      /*
+      setTimeout(() => {
+          console.log('a');
+          setTimeout(() => {
+              console.log('b');
+              setTimeout(() => {
+                  console.log('c');
+              }, delay());
+          }, delay());
+      }, delay());
+      */
+
+      const delay = () => Math.random() * 1000 + 500;
+
+
+      function allDone() {
+        console.log('all done');
+      }
+
+      // const/let to declare a variable outside of a function it is known as a "script"
+      let counter = 0;
+
+      // var will declare the variable as global, so you could access it as `window.counter`
+      // var counter = 0;
+
+      counter++;
+      setTimeout(() => {
+        console.log('a');
+        counter--;
+        if (counter === 0) {
+          allDone();
+        }
+      }, delay());
+
+      counter++;
+      setTimeout(() => {
+        console.log('b');
+        counter--;
+        if (counter === 0) {
+          allDone();
+        }
+      }, delay());
+
+      counter++;
+      setTimeout(() => {
+        console.log('c');
+        counter--;
+        if (counter === 0) {
+          allDone();
+        }
+      }, delay());
+
+      // Rules
+      // 1. All calls to `setTimeout` must occur in the same task
+      // 2. You cannot explicitly set any timeout delay values
+
+
+      // Run the all done function after all three setTimeouts are executed
+
+
+
+    </script> -->
+
+    <!-- <script>
+
+      const delay = () => Math.random() * 1000 + 500;
+
+      class Promise {
+      
+        constructor(fn) {
+
+          this._resolveFns = [];
+          this._rejectFns = [];
+
+          const resolveFn = result => {
+            this._resolveFns.forEach(resFn => resFn(result));
+          };
+          const rejectFn = result => {
+            this._rejectFns.forEach(rejFn => rejFn(result));
+          };
+
+          fn(resolveFn, rejectFn);
+        }
+
+        then(fn) {
+          this._resolveFns.push(fn);
+        }
+
+        catch(fn) {
+          this._rejectFns.push(fn);
+        }
+      
+      }
+    
+      const p = new Promise((resolve, reject) => {
+      
+        setTimeout(() => {
+
+          resolve('a');
+
+        }, delay());
+
+      });
+
+      p.then(result => {
+        console.log(result);
+      });
+
+      console.log('made it here');
+    
+    </script> -->
+
+    <!-- <script>
+    
+      const xhr = new XMLHttpRequest();
+
+      xhr.addEventListener('readystatechange', () => {
+      
+        if (xhr.status === 200 && xhr.readyState === 4) {
+          console.log(JSON.parse(xhr.responseText));
+        }
+      
+      });
+
+      xhr.open('GET', 'http://localhost:3060/cars');
+      xhr.send();
+
+
+      // implement the following `myFetch` function so that it works exactly
+      // as described below:
+
+      myFetch('http://localhost:3060/cars').then(cars => console.log(cars));
+    
+    </script> -->
+    <!-- <script>
+         
+      const allCars = () => {
+        return fetch('http://localhost:3060/cars')
+          .then(res => res.json());
+      };
+      
+      /*
+      const allCars = async () => {
+        const res = await fetch('http://localhost:3060/cars');
+        const cars = await res.json();
+        return cars;
+      };
+      */
+
+      allCars().then(cars => console.log(cars)).catch(err => console.log(err));
+    
+    
+    
+    </script> -->
+    <!-- <script>
+
+      const delay = () => Math.random() * 1000 + 500;
+      const fn = r => { console.log(r); return r; };
+    
+      const taskA = () => new Promise(resolve => setTimeout(() => resolve('a'), delay()));
+      const taskB = () => new Promise((resolve, reject) => setTimeout(() => reject('b'), delay()));
+      const taskC = () => new Promise(resolve => setTimeout(() => resolve('c'), delay()));
+
+      Promise.all([
+        taskA().then(fn),
+        taskB().then(fn),
+        taskC().then(fn),
+      ]).then(results => {
+        console.log(results);
+        console.log('all done');
+      }).catch(result => {
+        console.log('failed: ', result);
+      });
+    
+    
+    </script> -->
+    <!-- <script>
+    
+      'use strict';
+
+      // call-site this
+      
+      function doIt() {
+        console.log(this);
+
+        // const that = this;
+
+        // lexical this, NOT call-site this
+        const inner = () => {
+          console.log(this); // what is this "that" going to be?
+        } 
+
+        inner();       
+      }
+
+      // doIt();
+
+      // window.doIt();
+
+      const o = {
+        id: 2,
+        doIt: doIt,
+      };
+
+      o.doIt();
+
+      // console.log(window.doIt === o.doIt);
+      
+
+      /*
+      Array.prototype.map = function(transformFn) {
+
+        console.log('our hacked up version');
+
+        const newArr = [];
+
+        for (let x=0; x< this.length; x++) {
+          newArr.push(transformFn(this[x], x, this));
+        }
+
+        return newArr;
+      }
+
+      const nums = [1,2,3,4,5];
+
+      console.log(nums.map(x => x * 2));
+      */
+    
+    
+    
+    </script> -->
+    <!-- <script>
+
+      const parent = {
+        name: 'parent',
+        amt: 2000,
+      };
+
+      const child = Object.create(parent);
+
+      //  child.name = "child";
+
+      console.log(child.amt); // 2000
+      console.log(child);
+
+      /*
+      parent.amt = 3000;
+
+      console.log(child.amt); // 3000
+
+      child.amt = 500;
+
+      console.log(child.amt);
+
+      console.log(child);
+
+      delete child.amt;
+
+      console.log(child);
+
+      console.log(child.amt);
+
+      */
+
+
+
+    </script> -->
+
+    <!-- <script>
+
+      class Person {
+
+        constructor(firstName, lastName) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+        }
+
+        getFullName() {
+          return this.firstName + ' ' + this.lastName;
+        }
+
+      }
+
+      const person1 = new Person('Bob', 'Smith');
+      console.log(person1.getFullName());
+
+      console.log(person1);
+
+      const person2 = new Person('Jane', 'Thomas');
+      console.log(person2.getFullName());
+
+      console.log(person2);
+
+      console.log(person1.getFullName === person2.getFullName);
+
+
+      function Person2(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+      }
+
+      Person2.prototype.getFullName = function() {
+        return this.firstName + ' ' + this.lastName;
+      };
+
+      const person5 = new Person2('Sarah', 'Gallie');
+      console.log(person5.getFullName());
+
+      console.log(person5);
+
+      // const parent = {
+      //   getFullName() {
+      //     return this.firstName + ' ' + this.lastName;
+      //   }
+      // };
+
+      // const person3 = Object.create(parent);
+      // person3.firstName = "Sally";
+      // person3.lastName = "Smith";
+      // console.log(person3);
+      // console.log(person3.getFullName());  
+
+      // const person4 = Object.create(parent);
+      // person4.firstName = "Srilakshmi";
+      // person4.lastName = "Movva";
+      // console.log(person4);
+      // console.log(person4.getFullName());  
+
+      // console.log(person3.getFullName === person4.getFullName);
+
+
+
+    </script>
+
+    <script>
+
+      class Person {
+
+        constructor(firstName, lastName) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+        }
+
+        getFullName() {
+          return this.firstName + ' ' + this.lastName;
+        }
+
+      }
+
+      class Student extends Person {
+
+        constructor(studentId, firstName, lastName) {
+          super(firstName, lastName);
+          this.studentId = studentId;
+        }
+
+        getRecordInfo() {
+          return `${this.studentId} ${this.lastName}, ${this.firstName}`;
+        }
+
+      }
+
+      const student1 = new Student(1, "Kelly", "Thompkins");
+
+      console.log(student1);
+
+      console.log(student1.someProp);
+
+
+
+
+    </script> 
+
+    <script>
+
+      // const person = {
+      //   firstName: 'Sam',
+      //   lastName: 'Sulley',
+      //   getFullName() {
+      //     console.log(this.firstName + " " + this.lastName);
+      //   },
+      // };
+
+      // person.getFullName = person.getFullName.bind(person);
+
+      // setTimeout(person.getFullName, 2000)
+
+      class Person {
+
+        // creates instance properties without a constructor - ES2022
+        #firstName = 'Bob'; // private member  - ES2022
+        lastName = 'Smith'
+
+        // constructor(firstName, lastName) {
+        //   this.firstName = firstName;
+        //   this.lastName = lastName;
+
+        //   // this.printFullName = this.printFullName.bind(this);
+        // }
+
+        get firstName() {
+          return this.#firstName;
+        }
+
+        set firstName(value) {
+          this.#firstName = value;
+        }
+
+
+        // class arrow function and it does the bind for you - ES2022
+        printFullName = () => {
+          console.log(this.firstName + ' ' + this.lastName);
+        }
+
+      }
+
+      const p = new Person('Timmy', 'Tolins');
+
+      setTimeout(p.printFullName, 2000);
+
+      console.log(p.#firstName);
+
+
+    </script>     -->
+
+
+
+  </body>
+</html>
