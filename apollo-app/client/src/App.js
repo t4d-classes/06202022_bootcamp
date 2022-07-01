@@ -1,6 +1,7 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, useMutation } from "@apollo/client";
 import { useState } from 'react';
 
+import { useForm } from './hooks/useForm';
 import { BookTable } from "./components/BookTable";
 import { DropDownList2 } from "./components/DropDownList2";
 
@@ -19,7 +20,17 @@ const APP_QUERY = gql`
   }
 `;
 
+const ADD_COLOR_MUTATION = gql`
+  mutation AddColor($newColor: NewColor!) {
+    addColor(newColor: $newColor) {
+      id
+    }
+  }
+`;
+
 function App() {
+
+  const [ colorForm, change ] = useForm({ name: '', hexcode: '' });
 
   const [ colorId, setColorId ] = useState(1);
   const [ authorId, setAuthorId ] = useState('-1');
@@ -29,6 +40,8 @@ function App() {
       variables: { colorId, authorId },
       fetchPolicy: 'network-only',
     });
+
+  const [ mutateAddColor ] = useMutation(ADD_COLOR_MUTATION);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -41,6 +54,17 @@ function App() {
   });
   authorOptions.unshift({ value: '-1', text: "Select One..." });
 
+  const addColor = () => {
+
+    return mutateAddColor({
+      variables: {
+        newColor: { ...colorForm },
+      },
+      refetchQueries: [ { query: APP_QUERY } ],
+    });
+
+  };
+
   return (
     <>
       <div>
@@ -48,6 +72,17 @@ function App() {
         <button type="button" onClick={() => setColorId(colorId-1)}>&lt;</button>
         <button type="button" onClick={() => setColorId(colorId+1)}>&gt;</button>
       </div>
+      <form>
+        <label>
+          Name: <input type="text" name="name"
+            value={colorForm.name} onChange={change} />
+        </label>
+        <label>
+          Hexcode: <input type="text" name="hexcode"
+            value={colorForm.hexcode} onChange={change} />
+        </label>
+        <button type="button" onClick={addColor}>Add Color</button>
+      </form>
       <DropDownList2 options={authorOptions}
         title="Select Author" name="authorId"
         value={authorId} onChange={e => setAuthorId(e.target.value)} />

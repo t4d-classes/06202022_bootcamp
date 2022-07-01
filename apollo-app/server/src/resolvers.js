@@ -53,10 +53,33 @@ export const resolvers = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(args.newColor)
       }).then(res => res.json());
+    },
+    addAuthor(_, args) {
+      return fetch('http://localhost:5050/authors', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(args.newAuthor)
+      }).then(res => res.json());
+    },
+    addBook(_, args) {
+      return fetch('http://localhost:5050/books', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(args.newBook)
+      }).then(res => res.json());
+    },
+    deleteBook(_, args) {
+      return fetch(`http://localhost:5050/books/${args.bookId}`, {
+        method: 'DELETE',
+      }).then(() => args.bookId);
     }
   },
   Book: {
-    author: async (book) => {
+    // default
+    // authorId(book) {
+    //   return book.authorId;
+    // }
+    author: async (book, args, context) => {
       const res = await fetch('http://localhost:5050/authors/' + book.authorId);
       return res.json();
     }
